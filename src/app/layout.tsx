@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={firaCode.variable}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-[#222222]">{children}</body>
     </html>
   );
 }

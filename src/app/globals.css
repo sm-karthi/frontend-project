@@ -11,3 +11,12 @@
   font-family: var(--font-fira-code);
 }
 
+.marque {
+  @apply bg-[222222] border border-[#3b3b3b] text-[#adadad] text-lg py-2 px-4 w-fit text-nowrap 
+  hover:underline hover:text-white duration-150 cursor-pointer;
+}
+
+.menuLink{
+  @apply hover:underline duration-150 hover:text-white h-fit w-fit cursor-pointer
+}
+
