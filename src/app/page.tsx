@@ -20,7 +20,7 @@ export default function Home() {
 
             <div className="flex flex-col space-y-0.5">
               <p>Switch to</p>
-              <p className="underline hover:text-white cursor-pointer">Light mode</p>
+              <p className="underline duration-150 hover:text-white cursor-pointer w-fit">Light mode</p>
             </div>
 
           </div>
@@ -57,16 +57,16 @@ export default function Home() {
 
           <div className='flex justify-between text-[#adadad] text-xl items-center'>
 
-            <p className='hover:underline hover:text-white cursor-pointer'>Latest posts ↓</p>
+            <p className='hover:underline duration-150 hover:text-white cursor-pointer'>Latest posts ↓</p>
 
 
-            {/* <div>
+            <div>
             <ParticlesAnimation />
-          </div> */}
+          </div>
 
             <div className='flex flex-col space-y-0.5 text-end'>
               <p>Want to hire me?</p>
-              <p className='underline hover:text-white cursor-pointer'>examplecontact@gmail.com</p>
+              <p className='underline duration-150 hover:text-white cursor-pointer'>examplecontact@gmail.com</p>
             </div>
 
           </div>

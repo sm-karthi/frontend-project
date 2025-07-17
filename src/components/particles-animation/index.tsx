@@ -6,19 +6,14 @@ import image from '@/assets/images/image1.png';
 export function ParticlesAnimation() {
   useEffect(() => {
     const canvas = document.getElementById('canvas1') as HTMLCanvasElement;
-    const image = document.getElementById('image1') as HTMLImageElement;
+    const imageEl = document.getElementById('image1') as HTMLImageElement;
 
-    if (!canvas || !image) {
+    if (!canvas || !imageEl) {
       console.error('Canvas or image element not found');
       return;
     }
 
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    if (!ctx) {
-      console.error('Canvas context is null');
-      return;
-    }
-
+    const ctx = canvas.getContext('2d')!;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -26,18 +21,7 @@ export function ParticlesAnimation() {
     const particleSize = gap * 0.6;
     const particles: any[] = [];
 
-    const mouse = {
-      x: 0,
-      y: 0,
-      radius: 3000,
-    };
-
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-
-    const imgX = centerX - image.width / 2;
-    const imgY = centerY - image.height / 2;
-
+    const mouse = { x: 0, y: 0, radius: 3000 };
 
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.x;
@@ -73,7 +57,6 @@ export function ParticlesAnimation() {
 
       p.vx *= p.friction;
       p.vy *= p.friction;
-
       p.x += p.vx + (p.originX - p.x) * p.ease;
       p.y += p.vy + (p.originY - p.y) * p.ease;
     }
@@ -84,15 +67,29 @@ export function ParticlesAnimation() {
     }
 
     function initParticles() {
-      ctx.drawImage(image, imgX, imgY);
-      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      const tempCanvas = document.createElement('canvas');
+      const tempCtx = tempCanvas.getContext('2d')!;
+      tempCanvas.width = imageEl.width;
+      tempCanvas.height = imageEl.height;
 
-      for (let y = 0; y < canvas.height; y += gap) {
-        for (let x = 0; x < canvas.width; x += gap) {
-          const i = (y * canvas.width + x) * 4;
+      tempCtx.drawImage(imageEl, 0, 0);
+
+      const imgData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+      const pixels = imgData.data;
+
+      const centerX = canvas.width / 2 - tempCanvas.width / 2;
+
+      const percentageFromBottom = 10; 
+      const imageBottomY = canvas.height * ((100 - percentageFromBottom) / 100) - tempCanvas.height;
+
+      for (let y = 0; y < tempCanvas.height; y += gap) {
+        for (let x = 0; x < tempCanvas.width; x += gap) {
+          const i = (y * tempCanvas.width + x) * 4;
           const alpha = pixels[i + 3];
           if (alpha > 0) {
-            particles.push(createParticle(x, y));
+            const posX = centerX + x;
+            const posY = imageBottomY + y;
+            particles.push(createParticle(posX, posY));
           }
         }
       }
@@ -107,20 +104,21 @@ export function ParticlesAnimation() {
       requestAnimationFrame(animate);
     }
 
-
- 
+    if (imageEl.complete) {
       initParticles();
       animate();
-   
+    } else {
+      imageEl.onload = () => {
+        initParticles();
+        animate();
+      };
+    }
   }, []);
 
   return (
     <>
-
-      <canvas id="canvas1" />
-
+      <canvas id="canvas1" className="fixed inset-0 w-full h-full -z-10" />
       <img id="image1" src={image.src} alt="Animation image" className="hidden" />
-      
     </>
   );
 }
