@@ -6,8 +6,6 @@ export function Header() {
 
             <BackToHomeLink />
 
-            <p className="mr-16">Website.com</p>
-
             <SideMenu />
 
         </div>

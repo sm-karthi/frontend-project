@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 
 export function SideMenu() {
 
-    let pathName = usePathname();
+    const pathName = usePathname();
 
 
     return (
-        <div className="flex flex-col items-end text-end space-y-3.5 text-xl text-[#adadad]">
+        <div className="flex flex-col items-end text-end space-y-3.5 text-sm md:text-xl text-[#adadad]">
 
             <Link href={"/about"} className={`menuLink ${pathName.includes("/about") ?
                 'underline text-white' : ''}`}>About</Link>

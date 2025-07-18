@@ -3,6 +3,19 @@
 import { useEffect } from 'react';
 import image from '@/assets/images/image1.png';
 
+type Particle = {
+  x: number;
+  y: number;
+  originX: number;
+  originY: number;
+  vx: number;
+  vy: number;
+  color: string;
+  size: number;
+  ease: number;
+  friction: number;
+};
+
 export function ParticlesAnimation() {
   useEffect(() => {
     const canvas = document.getElementById('canvas1') as HTMLCanvasElement;
@@ -19,7 +32,7 @@ export function ParticlesAnimation() {
 
     const gap = 4;
     const particleSize = gap * 0.6;
-    const particles: any[] = [];
+    const particles: Particle[] = [];
 
     const mouse = { x: 0, y: 0, radius: 3000 };
 
@@ -28,7 +41,7 @@ export function ParticlesAnimation() {
       mouse.y = e.y;
     });
 
-    function createParticle(originX: number, originY: number) {
+    function createParticle(originX: number, originY: number): Particle {
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -43,7 +56,7 @@ export function ParticlesAnimation() {
       };
     }
 
-    function updateParticle(p: any) {
+    function updateParticle(p: Particle) {
       const dx = mouse.x - p.x;
       const dy = mouse.y - p.y;
       const distance = dx * dx + dy * dy;
@@ -61,7 +74,7 @@ export function ParticlesAnimation() {
       p.y += p.vy + (p.originY - p.y) * p.ease;
     }
 
-    function drawParticle(p: any) {
+    function drawParticle(p: Particle) {
       ctx.fillStyle = p.color;
       ctx.fillRect(p.x, p.y, p.size, p.size);
     }
@@ -78,8 +91,7 @@ export function ParticlesAnimation() {
       const pixels = imgData.data;
 
       const centerX = canvas.width / 2 - tempCanvas.width / 2;
-
-      const percentageFromBottom = 10; 
+      const percentageFromBottom = 10;
       const imageBottomY = canvas.height * ((100 - percentageFromBottom) / 100) - tempCanvas.height;
 
       for (let y = 0; y < tempCanvas.height; y += gap) {
@@ -122,3 +134,4 @@ export function ParticlesAnimation() {
     </>
   );
 }
+
