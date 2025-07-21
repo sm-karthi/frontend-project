@@ -1,12 +1,13 @@
 
 import { ParticlesAnimation, MarqueAnimation, SideMenu } from '@/components';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className=" h-screen pt-6 pb-1 px-5.5 overflow-x-hidden">
+    <div className=" h-screen relative pt-6 pb-1 px-5.5 overflow-x-hidden">
 
 
-      <div className='flex flex-col justify-between h-full'>
+      <div className='flex flex-col h-full'>
 
         <div className="flex justify-between">
 
@@ -31,7 +32,7 @@ export default function Home() {
 
             <div className="flex flex-col font-bold text-5xl mt-2 text-white text-center">
               <h1>Rajavasanthan</h1>
-              
+
             </div>
 
             <div className="flex flex-col text-[#adadad] text-sm md:text-xl max-w-md space-y-2 text-center">
@@ -48,7 +49,7 @@ export default function Home() {
 
 
         {/* Mobile screen  */}
-        <div className="flex flex-col md:hidden space-y-6">
+        <div className="flex flex-col mt-12 md:hidden space-y-6">
 
           <div className="flex flex-col font-bold text-4xl mt-2 text-white text-center">
             <h1>Rajavasanthan</h1>
@@ -67,22 +68,18 @@ export default function Home() {
 
 
 
-        <div className='flex flex-col space-y-3'>
+        <div className='flex flex-col absolute bottom-1 space-y-3'>
 
-          <div className='flex justify-between text-[#adadad] text-sm md:text-xl items-center'>
+          <div className='text-[#adadad] text-sm md:text-xl items-center'>
 
-            <p className='hover:underline duration-150 hover:text-white cursor-pointer'>Latest posts ↓</p>
+            <Link href={"/blog"} className='hover:underline duration-150 hover:text-white cursor-pointer'>Latest posts ↓</Link>
 
 
             <div>
               <ParticlesAnimation />
             </div>
 
-            <div className='flex flex-col space-y-0.5 text-end'>
-              <p>Want to hire me?</p>
-              <p className='underline duration-150 hover:text-white cursor-pointer'>examplecontact@gmail.com</p>
-            </div>
-
+            
           </div>
 
           <MarqueAnimation />

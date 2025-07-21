@@ -20,7 +20,7 @@ export function Volunteering() {
 
                 <p className="text-white">{"reprograma"} | São Paulo, Brazil | 2018</p>
 
-                <p>- Contributed as a teacher's assistant, clearing up some tech student issues about web development</p>
+                <p>- Contributed as a teacher&apos;s assistant, clearing up some tech student issues about web development</p>
 
                 <p>- +10 new developers (women) formed and inserted into the industry</p>
             </div>
