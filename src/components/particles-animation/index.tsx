@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import image from '@/assets/images/image1.png';
+import image from '../../../public/images/image1.png';
 
 type Particle = {
   x: number;

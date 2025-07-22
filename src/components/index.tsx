@@ -19,3 +19,5 @@ export * from './ui/aboutPage/hacking'
 export * from './ui/aboutPage/openSource'
 
 export * from './ui/aboutPage/volunteering'
+
+export * from './ui/blogTitle'

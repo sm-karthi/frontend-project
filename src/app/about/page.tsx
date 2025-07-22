@@ -4,8 +4,14 @@ import {
     Header, CopyBioBtn, Career, Academy,
     OpenSource, Volunteering, Hacking
 } from "@/components"
-import image from "@/assets/images/image2.png"
+
+import image from "../../../public/images/image2.png"
+import GridsAndGuides from "../../../public/images/gridsAndGuides.png"
+import eachOneTeachOne from "../../../public/images/eachOneTeachOne.png"
+import interviewLama from "../../../public/images/interview-lama.png"
+
 import { useState } from "react";
+import Link from "next/link"
 
 const bioText =
     `I am a devoted technology enthusiast and mentor with a profound passion for software development. In my daily interactions, I engage with a diverse array of students, always eager to impart my knowledge and share my experiences. As the founder of Grids and Guides, a forward-thinking company dedicated to empowering individuals to harness technology in innovative and meaningful ways, I am committed to fostering a culture of continuous learning and growth.
@@ -56,6 +62,24 @@ export default function About() {
                             <CopyBioBtn textToCopy={bioText} />
 
                         </div>
+
+                    </div>
+
+                    <h2 className="bg-[#3a3a3a] mt-8 h-fit py-0.5 font-bold text-white w-fit mb-3">Founder of</h2>
+
+                    <div className="flex justify-between flex-wrap mt-8 gap-8">
+
+                        <Link href={"https://gridsandguides.com/"} target="_blank">
+                            <img src={GridsAndGuides.src} alt="Grids and Guides" className="h-22" />
+                        </Link>
+
+                        <Link href={"https://eachoneteachone.co.in/"} target="_blank">
+                            <img src={eachOneTeachOne.src} alt="Each one Teach one" className="h-22" />
+                        </Link>
+
+                        <Link href={"https://vaathiyar.ai/"} target="_blank">
+                            <img src={interviewLama.src} alt="Interview lama" className="h-22" />
+                        </Link>
 
                     </div>
 
