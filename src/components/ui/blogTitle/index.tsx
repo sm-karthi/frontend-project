@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function BlogTitleAndDes() {
 
-    let blogsData = [
+    const blogsData = [
         {
             id: 1,
             fileName: "art-without-emotions-is-just-a-noise-thats-what-ai-is-doing",

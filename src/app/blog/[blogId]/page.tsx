@@ -1,19 +1,30 @@
-import fs from "fs";
+import fs from "fs/promises"; 
 import path from "path";
 import Markdown from "react-markdown";
-import { Header } from "@/components";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
+import { Header } from "@/components";
 
-export default function BlogPage({ params }: { params: { blogId: string } }) {
+
+export default async function BlogPage({
+    params,
+}: {
+    params: { blogId: string };
+}) {
 
     const filePath = path.join(process.cwd(), `src/assets/article/${params.blogId}.md`);
-    const fileContent = fs.readFileSync(filePath, "utf-8");
+
+    let fileContent = "";
+    try {
+        fileContent = await fs.readFile(filePath, "utf-8"); 
+    } catch (err) {
+        console.error("Markdown file not found:", filePath, err); 
+    }
+
 
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden text-[#adadad]">
             <Header />
-
             <div className="max-w-4xl mx-auto mt-14 mb-12">
                 <Markdown
                     remarkPlugins={[remarkGfm]}
@@ -25,11 +36,7 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
                         ul: (props) => <ul className="list-disc list-inside my-4 pl-5" {...props} />,
                         ol: (props) => <ol className="list-decimal list-inside my-4 pl-5" {...props} />,
                         li: (props) => <li className="mb-2" {...props} />,
-                        img: (props) => {
-                            console.log("image props", props);
-
-                            return <img className="my-6" {...props} />
-                        },
+                        img: (props) => <img className="my-6" alt={props.alt || ""} {...props} />,
                         strong: (props) => <strong className="font-semibold" {...props} />,
                         em: (props) => <em className="italic" {...props} />,
                         table: (props) => (
@@ -46,13 +53,13 @@ export default function BlogPage({ params }: { params: { blogId: string } }) {
                 >
                     {fileContent}
                 </Markdown>
-
             </div>
 
-            <div className="mb-20 ">
-                <Link href={"/blog"} className="hover:underline text-sm md:text-xl duration-150 hover:text-white h-fit w-fit">{"<-"} Back to blog</Link>
+            <div className="mb-20">
+                <Link href="/blog" className="hover:underline text-sm md:text-xl duration-150 hover:text-white h-fit w-fit">
+                    {"<-"} Back to blog
+                </Link>
             </div>
-
         </div>
     );
 }
