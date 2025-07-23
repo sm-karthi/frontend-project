@@ -5,13 +5,15 @@ import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { Header, Comments, Suggestion } from "@/components";
 
-type BlogPageProps = {
-    params: {
-        blogId: string;
-    };
-};
+interface Params {
+    blogId: string;
+}
 
-export default async function BlogPage({ params }: BlogPageProps) {
+export default async function BlogPage({
+    params,
+}: {
+    params: Params;
+}) {
     const filePath = path.join(process.cwd(), `src/assets/article/${params.blogId}.md`);
 
     let fileContent = "";
