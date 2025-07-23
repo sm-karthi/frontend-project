@@ -2,19 +2,8 @@
 
 import { useEffect } from 'react';
 import image from '../../../public/images/image1.png';
+import { Particle } from '@/types';
 
-type Particle = {
-  x: number;
-  y: number;
-  originX: number;
-  originY: number;
-  vx: number;
-  vy: number;
-  color: string;
-  size: number;
-  ease: number;
-  friction: number;
-};
 
 export function ParticlesAnimation() {
   useEffect(() => {

@@ -21,3 +21,7 @@ export * from './ui/aboutPage/openSource'
 export * from './ui/aboutPage/volunteering'
 
 export * from './ui/blogTitle'
+
+export * from './ui/comments'
+
+export * from './ui/suggestion'

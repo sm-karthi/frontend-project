@@ -1,9 +1,9 @@
-import fs from "fs/promises"; 
+import fs from "fs/promises";
 import path from "path";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
-import { Header } from "@/components";
+import { Header, Comments, Suggestion } from "@/components";
 
 
 export default async function BlogPage({
@@ -16,16 +16,19 @@ export default async function BlogPage({
 
     let fileContent = "";
     try {
-        fileContent = await fs.readFile(filePath, "utf-8"); 
+        fileContent = await fs.readFile(filePath, "utf-8");
     } catch (err) {
-        console.error("Markdown file not found:", filePath, err); 
+        console.error("Markdown file not found:", filePath, err);
     }
 
 
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden text-[#adadad]">
+
             <Header />
+
             <div className="max-w-4xl mx-auto mt-14 mb-12">
+
                 <Markdown
                     remarkPlugins={[remarkGfm]}
                     components={{
@@ -53,13 +56,27 @@ export default async function BlogPage({
                 >
                     {fileContent}
                 </Markdown>
+
             </div>
 
-            <div className="mb-20">
+            <div>
                 <Link href="/blog" className="hover:underline text-sm md:text-xl duration-150 hover:text-white h-fit w-fit">
                     {"<-"} Back to blog
                 </Link>
             </div>
+
+
+            {/* Comments section  */}
+
+            <Comments />
+
+            
+            {/* Suggestion section  */}
+                
+            <Suggestion currentBlogName={params.blogId} />
+
+
+
         </div>
     );
 }

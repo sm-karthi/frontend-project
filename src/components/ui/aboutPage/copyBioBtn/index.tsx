@@ -1,10 +1,9 @@
 "use client"
 
+import { CopyBioBtnProps } from "@/types";
 import { useState } from "react";
 
-interface CopyBioBtnProps {
-    textToCopy: string;
-}
+
 
 export function CopyBioBtn({ textToCopy }: CopyBioBtnProps) {
     const [copied, setCopied] = useState(false);
