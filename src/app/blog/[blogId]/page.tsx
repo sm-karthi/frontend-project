@@ -5,13 +5,13 @@ import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { Header, Comments, Suggestion } from "@/components";
 
+type BlogPageProps = {
+    params: {
+        blogId: string;
+    };
+};
 
-export default async function BlogPage({
-    params,
-}: {
-    params: { blogId: string };
-}) {
-
+export default async function BlogPage({ params }: BlogPageProps) {
     const filePath = path.join(process.cwd(), `src/assets/article/${params.blogId}.md`);
 
     let fileContent = "";
@@ -21,14 +21,11 @@ export default async function BlogPage({
         console.error("Markdown file not found:", filePath, err);
     }
 
-
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden text-[#adadad]">
-
             <Header />
 
             <div className="max-w-4xl mx-auto mt-14 mb-12">
-
                 <Markdown
                     remarkPlugins={[remarkGfm]}
                     components={{
@@ -56,27 +53,19 @@ export default async function BlogPage({
                 >
                     {fileContent}
                 </Markdown>
-
             </div>
 
             <div>
-                <Link href="/blog" className="hover:underline text-sm md:text-xl duration-150 hover:text-white h-fit w-fit">
+                <Link
+                    href="/blog"
+                    className="hover:underline text-sm md:text-xl duration-150 hover:text-white h-fit w-fit"
+                >
                     {"<-"} Back to blog
                 </Link>
             </div>
 
-
-            {/* Comments section  */}
-
             <Comments />
-
-            
-            {/* Suggestion section  */}
-                
             <Suggestion currentBlogName={params.blogId} />
-
-
-
         </div>
     );
 }
