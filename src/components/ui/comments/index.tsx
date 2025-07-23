@@ -15,7 +15,7 @@ export function Comments() {
             comments: '',
         },
         validate: (values) => {
-            let errors: FormErrors = {}
+            const errors: FormErrors = {}
 
             if (!values.name) {
                 errors.name = 'Name is required'
@@ -41,7 +41,7 @@ export function Comments() {
                 alert("Comment sent successfully")
                 resetForm()
                 setCaptchaToken(null)
-            } catch (error) {
+            } catch {
                 alert("Something went wrong")
             }
         }

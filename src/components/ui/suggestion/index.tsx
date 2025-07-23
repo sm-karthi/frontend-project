@@ -30,13 +30,13 @@ export function Suggestion({ currentBlogName }: { currentBlogName: string }) {
 
             <h2 className="text-2xl sm:text-3xl font-semibold">Suggestion for you</h2>
 
-            <div className="flex flex-col mt-10 md:flex-row gap-8 flex-wrap">
+            <div className="flex flex-col mt-10 md:flex-row gap-4 flex-wrap">
 
                 {randomFive.map((blog) => (
 
                     <Link key={blog.id} href={`/blog/${blog.fileName}`}>
 
-                        <div className="border border-[#6f6f6f] rounded-xl p-4 md:max-w-64 space-y-2">
+                        <div className="border border-[#6f6f6f] rounded-xl p-4 md:max-w-72 space-y-2">
 
                             <img src={blog.imageUrl} alt="Image" className="w-full h-48" />
 
