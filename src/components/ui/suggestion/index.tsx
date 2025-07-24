@@ -38,7 +38,7 @@ export function Suggestion({ currentBlogName }: { currentBlogName: string }) {
 
                         <div className="border border-[#6f6f6f] rounded-xl p-4 md:max-w-72 space-y-2">
 
-                            <img src={blog.imageUrl} alt="Image" className="w-full h-48" />
+                            <img src={blog.imageUrl} alt="Image" draggable="false" className="w-full h-48" />
 
                             <h3 className="text-xl font-medium">{blog.title.slice(0, 38)}...</h3>
 

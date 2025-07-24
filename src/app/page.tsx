@@ -12,16 +12,12 @@ export default function Home() {
         <div className="flex justify-between">
 
 
-          <div className="flex flex-col space-y-6.5 text-[#adadad] text-sm md:text-xl">
+          <div className="text-[#adadad] text-sm md:text-xl">
 
             <div className="flex flex-col space-y-0.5">
               <p>Based in</p>
-              <p className="underline">São Paulo, Brazil</p>
-            </div>
-
-            <div className="flex flex-col space-y-0.5">
-              <p>Switch to</p>
-              <p className="underline duration-150 hover:text-white cursor-pointer w-fit">Light mode</p>
+              <p className="underline">Chennai, Tamilnadu,</p>
+              <p className="underline">India</p>
             </div>
 
           </div>

@@ -1,14 +1,15 @@
+
 import fs from "fs/promises";
 import path from "path";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { Header, Comments, Suggestion } from "@/components";
-import { Params } from "@/types";
+import { PageProps } from "@/types";
 
-export default async function BlogPage({ params }: { params: Params }) {
+export default async function BlogPage({ params }: PageProps) {
+    const { blogId } = params;
 
-    const { blogId } = await params
 
     const filePath = path.join(process.cwd(), `src/assets/article/${blogId}.md`);
 
@@ -34,7 +35,7 @@ export default async function BlogPage({ params }: { params: Params }) {
                         ul: (props) => <ul className="list-disc list-inside my-4 pl-5" {...props} />,
                         ol: (props) => <ol className="list-decimal list-inside my-4 pl-5" {...props} />,
                         li: (props) => <li className="mb-2" {...props} />,
-                        img: (props) => <img className="my-6" alt={props.alt || ""} {...props} />,
+                        img: (props) => <img className="my-6" draggable="false" alt={props.alt || ""} {...props} />,
                         strong: (props) => <strong className="font-semibold" {...props} />,
                         em: (props) => <em className="italic" {...props} />,
                         table: (props) => (

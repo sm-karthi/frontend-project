@@ -68,7 +68,7 @@ export function Comments() {
                         value={formik.values.name}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        className="border-2 border-[#6f6f6f] rounded p-1.5 px-2 focus:outline-none focus:border-white text-lg"
+                        className="border-2 border-[#6f6f6f] rounded p-1.5 px-2 focus:outline-none focus:border-white text-sm md:text-lg"
                         placeholder="Enter your name"
                     />
                     {
@@ -90,7 +90,7 @@ export function Comments() {
                         value={formik.values.comments}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        className="border-2 border-[#6f6f6f] rounded p-1.5 px-2 focus:outline-none focus:border-white text-lg h-28"
+                        className="border-2 border-[#6f6f6f] rounded p-1.5 px-2 focus:outline-none focus:border-white text-sm md:text-lg h-28"
                         placeholder="Enter your comments here..."
                     />
                     {

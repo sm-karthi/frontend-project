@@ -5,12 +5,11 @@ import { Header, CopyBioBtn } from "@/components"
 import image from "../../../public/images/image2.png"
 import GridsAndGuides from "../../../public/images/gridsAndGuides.png"
 import eachOneTeachOne from "../../../public/images/eachOneTeachOne.png"
-import interviewLama from "../../../public/images/vaathiyar-ai.png"
+import vaathiyarAi from "../../../public/images/vaathiyar-ai.png"
 
 import linkedinIcon from '../../../public/images/linkedin-icon.png'
 import githubIcon from '../../../public/images/github-icon.png'
 
-import { useState } from "react";
 import Link from "next/link"
 
 const bioText =
@@ -26,8 +25,6 @@ Join me on this exciting journey of perpetual learning, growth, and impactful co
 
 export default function About() {
 
-    const [title, setTitle] = useState("career");
-
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden">
 
@@ -39,15 +36,15 @@ export default function About() {
                 <div className="mt-2 w-full md:w-[40%]">
                     <img src={image.src} alt="image" draggable={false}></img>
 
-                    <div className="flex space-x-4 justify-end items-center mt-4 mr-4">
+                    <div className="flex space-x-4 md:space-x-6 justify-end items-center mt-6 mr-4">
 
 
                         <Link href={"https://www.linkedin.com/in/rajavasanthan/"} target="_blank">
-                            <img src={linkedinIcon.src} alt="Linkedin Icon" draggable="false" className="h-14" />
+                            <img src={linkedinIcon.src} alt="Linkedin Icon" draggable="false" className="md:h-10 h-6" />
                         </Link>
 
                         <Link href={"https://github.com/Rajavasanthan"} target="_blank">
-                            <img src={githubIcon.src} alt="Linkedin Icon" draggable="false" className="h-10" />
+                            <img src={githubIcon.src} alt="Linkedin Icon" draggable="false" className="md:h-10 h-6" />
                         </Link>
 
 
@@ -81,16 +78,16 @@ export default function About() {
 
 
 
-                    <h2 className="bg-[#3a3a3a] mt-8 h-fit py-0.5 font-bold text-white w-fit mb-3">Founder of</h2>
+                    <h2 className="mt-8 font-bold text-white mb-3">Founder of</h2>
 
-                    <div className="flex justify-between flex-wrap mt-8 gap-8 mb-20">
+                    <div className="flex justify-center md:justify-between flex-wrap mt-8 gap-8 mb-20">
 
 
                         <Link href={"https://gridsandguides.com/"} target="_blank">
 
                             <div className="bg-gray-200 h-34 w-34 rounded-full flex items-center justify-center">
 
-                                <img src={GridsAndGuides.src} alt="Grids and Guides" className="h-18" />
+                                <img src={GridsAndGuides.src} alt="Grids and Guides" draggable="false" className="h-18" />
 
                             </div>
 
@@ -102,7 +99,7 @@ export default function About() {
 
                             <div className="bg-gray-200 h-34 w-34 rounded-full flex items-center justify-center">
 
-                                <img src={eachOneTeachOne.src} alt="Each one Teach one" className="h-22" />
+                                <img src={eachOneTeachOne.src} alt="Each one Teach one" draggable="false" className="h-22" />
 
                             </div>
 
@@ -114,7 +111,7 @@ export default function About() {
 
                             <div className="bg-gray-200 h-34 w-34 p-0.5 rounded-full flex items-center justify-center">
 
-                                <img src={interviewLama.src} alt="Interview lama" className="" />
+                                <img src={vaathiyarAi.src} alt="Vaathiayr.Ai" draggable="false" className="" />
 
                             </div>
 

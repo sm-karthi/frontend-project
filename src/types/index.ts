@@ -41,6 +41,9 @@ export interface Blog {
 }
 
 
-export interface Params {
+export interface PageProps {
+  params: {
     blogId: string;
+  };
 }
+

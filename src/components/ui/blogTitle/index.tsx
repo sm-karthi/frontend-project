@@ -16,7 +16,7 @@ export function BlogTitleAndDes() {
 
                 <div className="flex flex-col md:flex-row gap-4 py-8 md:px-4 w-full border-b border-gray-700 hover:bg-white hover:text-black duration-150 cursor-pointer">
 
-                    <img src={blog.imageUrl} alt="image" className="md:h-38 md:w-38" />
+                    <img src={blog.imageUrl} alt="image" draggable="false" className="md:h-38 md:w-38" />
 
                     <div>
                         <h2 className="font-bold text-lg md:ml-8 md:text-2xl">{blog.title}</h2>

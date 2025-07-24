@@ -13,57 +13,48 @@ export function MarqueAnimation() {
         return dateB.getTime() - dateA.getTime();
     });
 
-    const len = blogsData.length * 480
-
 
     useEffect(() => {
 
-        const animation = gsap.fromTo(".marqueBox",
-            { x: 300 },
+        const box = document.querySelector(".marqueBox");
+        if (!box) return;
+
+        const boxWidth = box.scrollWidth;
+        const viewWidth = window.innerWidth;
+
+        const animation = gsap.fromTo(box,
+            { x: 10 },
             {
-                x: -len,
-                duration: 25,
+                x: viewWidth - boxWidth,
+                duration: 22,
                 repeat: -1,
                 yoyo: true,
-                ease: "none",
+                ease: "linear",
             }
         );
 
-        const marqueElements = document.querySelectorAll(".marque");
 
-        marqueElements.forEach((element) => {
-
-            element.addEventListener("mouseenter", () => {
-                animation.pause();
-            });
-
-            element.addEventListener("mouseleave", () => {
-                animation.resume();
-            });
-
-        });
-
+        box.addEventListener("mouseenter", () => animation.pause());
+        box.addEventListener("mouseleave", () => animation.resume());
 
     }, []);
 
 
 
-
-
     return (
 
-        <div className="flex gap-1.5 marqueBox">
+        <div className="flex gap-1.5 marqueBox whitespace-nowrap">
 
-            {
-                blogsData.map((blog) => (
-                    <Link key={blog.id} href={`/blog/${blog.fileName}`}>
-                        <p className="marque">{blog.title.slice(0, 50)}... {"->"}</p>
-                    </Link>
-                ))
-            }
+            {blogsData.map((blog) => (
 
+                <Link key={blog.id} href={`/blog/${blog.fileName}`}>
+
+                    <p className="marque">{blog.title.slice(0, 45)}... {"->"}</p>
+
+                </Link>
+
+            ))}
 
         </div>
-
     );
 }
