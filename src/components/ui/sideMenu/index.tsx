@@ -17,10 +17,8 @@ export function SideMenu() {
             <Link href={"/blog"} className={`menuLink ${pathName.includes("/blog") ?
                 'underline text-white' : ''}`}>Blog</Link>
 
-            <Link href={"https://github.com/Rajavasanthan"} target="_blank" className="menuLink">Experiments</Link>
+            <Link href={"https://github.com/Rajavasanthan"} target="_blank" className="menuLink">GitHub</Link>
 
-            <Link href={"utilities"} className={`menuLink ${pathName.includes("/utilities") ?
-                'underline text-white' : ''}`}>Utilities</Link>
 
         </div>
     )

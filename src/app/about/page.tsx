@@ -1,14 +1,14 @@
 "use client"
 
-import {
-    Header, CopyBioBtn, Career, Academy,
-    OpenSource, Volunteering, Hacking
-} from "@/components"
+import { Header, CopyBioBtn } from "@/components"
 
 import image from "../../../public/images/image2.png"
 import GridsAndGuides from "../../../public/images/gridsAndGuides.png"
 import eachOneTeachOne from "../../../public/images/eachOneTeachOne.png"
-import interviewLama from "../../../public/images/interview-lama.png"
+import interviewLama from "../../../public/images/vaathiyar-ai.png"
+
+import linkedinIcon from '../../../public/images/linkedin-icon.png'
+import githubIcon from '../../../public/images/github-icon.png'
 
 import { useState } from "react";
 import Link from "next/link"
@@ -34,10 +34,24 @@ export default function About() {
             <Header />
 
 
-            <div className="flex flex-col md:flex-row justify-center md:justify-start w-full space-x-28 mt-6  text-[#adadad] text-sm md:text-xl">
+            <div className="flex flex-col md:flex-row justify-center md:justify-start w-full space-x-28 mt-18  text-[#adadad] text-sm md:text-xl">
 
                 <div className="mt-2 w-full md:w-[40%]">
                     <img src={image.src} alt="image" draggable={false}></img>
+
+                    <div className="flex space-x-4 justify-end items-center mt-4 mr-4">
+
+
+                        <Link href={"https://www.linkedin.com/in/rajavasanthan/"} target="_blank">
+                            <img src={linkedinIcon.src} alt="Linkedin Icon" draggable="false" className="h-14" />
+                        </Link>
+
+                        <Link href={"https://github.com/Rajavasanthan"} target="_blank">
+                            <img src={githubIcon.src} alt="Linkedin Icon" draggable="false" className="h-10" />
+                        </Link>
+
+
+                    </div>
 
                 </div>
 
@@ -65,89 +79,54 @@ export default function About() {
 
                     </div>
 
+
+
                     <h2 className="bg-[#3a3a3a] mt-8 h-fit py-0.5 font-bold text-white w-fit mb-3">Founder of</h2>
 
-                    <div className="flex justify-between flex-wrap mt-8 gap-8">
+                    <div className="flex justify-between flex-wrap mt-8 gap-8 mb-20">
+
 
                         <Link href={"https://gridsandguides.com/"} target="_blank">
-                            <img src={GridsAndGuides.src} alt="Grids and Guides" className="h-22" />
+
+                            <div className="bg-gray-200 h-34 w-34 rounded-full flex items-center justify-center">
+
+                                <img src={GridsAndGuides.src} alt="Grids and Guides" className="h-18" />
+
+                            </div>
+
+
                         </Link>
 
-                        <Link href={"https://eachoneteachone.co.in/"} target="_blank">
-                            <img src={eachOneTeachOne.src} alt="Each one Teach one" className="h-22" />
+
+                        <Link href={"https://www.youtube.com/@EachOneTeachOne"} target="_blank">
+
+                            <div className="bg-gray-200 h-34 w-34 rounded-full flex items-center justify-center">
+
+                                <img src={eachOneTeachOne.src} alt="Each one Teach one" className="h-22" />
+
+                            </div>
+
+
                         </Link>
+
 
                         <Link href={"https://vaathiyar.ai/"} target="_blank">
-                            <img src={interviewLama.src} alt="Interview lama" className="h-22" />
+
+                            <div className="bg-gray-200 h-34 w-34 p-0.5 rounded-full flex items-center justify-center">
+
+                                <img src={interviewLama.src} alt="Interview lama" className="" />
+
+                            </div>
+
+
+
                         </Link>
 
-                    </div>
-
-
-
-                    <div className="flex space-x-6 mt-10 md:mt-20 text-sm md:text-lg text-nowrap md:overflow-x-hidden overflow-x-scroll">
-
-                        <p className={`hover:underline dura hover:text-white cursor-pointer 
-                            ${title === "career" ? 'underline text-white' : ''}`}
-                            onClick={() => setTitle("career")}>
-                            Career
-                        </p>
-
-                        <p className={`hover:underline dura hover:text-white cursor-pointer 
-                            ${title === "academy" ? 'underline text-white' : ''}`}
-                            onClick={() => setTitle("academy")}>
-                            Academy
-                        </p>
-
-                        <p className={`hover:underline dura hover:text-white cursor-pointer 
-                            ${title === "openSource" ? 'underline text-white' : ''}`}
-                            onClick={() => setTitle("openSource")}>
-                            Open Source
-                        </p>
-
-                        <p className={`hover:underline dura hover:text-white cursor-pointer 
-                            ${title === "volunteering" ? 'underline text-white' : ''}`}
-                            onClick={() => setTitle("volunteering")}>
-                            Volunteering
-                        </p>
-
-                        <p className={`hover:underline dura hover:text-white cursor-pointer 
-                            ${title === "hacking" ? 'underline text-white' : ''}`}
-                            onClick={() => setTitle("hacking")}>
-                            Hacking
-                        </p>
-
-                    </div>
-
-                    <div className="mt-12 md:w-[80%] text-sm md:text-lg mb-10">
-
-                        {
-                            title === "career" && <Career />
-                        }
-
-                        {
-                            title === "academy" && <Academy />
-                        }
-
-                        {
-                            title === "openSource" && <OpenSource />
-                        }
-
-                        {
-                            title === "volunteering" && <Volunteering />
-                        }
-
-                        {
-                            title === "hacking" && <Hacking />
-                        }
                     </div>
 
                 </div>
 
             </div>
-
-
-
 
 
         </div>

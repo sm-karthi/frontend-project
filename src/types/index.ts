@@ -39,3 +39,8 @@ export interface Blog {
     imageUrl: string,
     fileName: string
 }
+
+
+export interface Params {
+    blogId: string;
+}

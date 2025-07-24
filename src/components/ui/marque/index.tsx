@@ -1,20 +1,31 @@
 "use client";
 
+import { useBlogsData } from "@/hooks/useBlogsData";
 import gsap from "gsap";
+import Link from "next/link";
 import { useEffect } from "react";
 
 export function MarqueAnimation() {
 
+    const blogsData = useBlogsData().sort((a, b) => {
+        const dateA = new Date(a.date.split("/").reverse().join("/"));
+        const dateB = new Date(b.date.split("/").reverse().join("/"));
+        return dateB.getTime() - dateA.getTime();
+    });
+
+    const len = blogsData.length * 480
+
+
     useEffect(() => {
-        
-       const animation = gsap.fromTo(".marqueBox",
-            { x: 200 },
+
+        const animation = gsap.fromTo(".marqueBox",
+            { x: 300 },
             {
-                x: -2400,
-                duration: 20,
+                x: -len,
+                duration: 25,
                 repeat: -1,
                 yoyo: true,
-                ease: "none", 
+                ease: "none",
             }
         );
 
@@ -26,37 +37,31 @@ export function MarqueAnimation() {
                 animation.pause();
             });
 
-            element.addEventListener("mouseleave", () => {  
+            element.addEventListener("mouseleave", () => {
                 animation.resume();
             });
 
         });
-        
+
 
     }, []);
 
-    
+
+
+
+
     return (
 
         <div className="flex gap-1.5 marqueBox">
 
-            <p className="marque">🌐 Networking is not that easy {"->"}</p>
+            {
+                blogsData.map((blog) => (
+                    <Link key={blog.id} href={`/blog/${blog.fileName}`}>
+                        <p className="marque">{blog.title.slice(0, 50)}... {"->"}</p>
+                    </Link>
+                ))
+            }
 
-            <p className="marque">🐘 First contact with PHP {"->"}</p>
-
-            <p className="marque">🎯 Starting with Object-Oriented Programming {"->"}</p>
-
-            <p className="marque">🗄️ The Boring Side of Modelling Databases {"->"}</p>
-
-            <p className="marque">☕ Why (not) start with Java? {"->"}</p>
-
-            <p className="marque">➡️ Go for it anyway {"->"}</p>
-
-            <p className="marque">🗼 The analogy of the tower of Hanoi to programming {"->"}</p>
-
-            <p className="marque">💻 First contact with code {"->"}</p>
-
-            <p className="marque">🚀 Starting... {"->"}</p>
 
         </div>
 

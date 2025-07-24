@@ -7,7 +7,7 @@ export default function Blog() {
             <Header />
 
 
-            <div className="md:mt-8 mt-14 text-[#adadad]">
+            <div className="md:mt-18 mt-14 text-[#adadad]">
 
                 <h1 className="font-bold text-white text-[48px] md:text-[55px] md:ml-12">Ideas. Opinions. Daydreams.</h1>
 

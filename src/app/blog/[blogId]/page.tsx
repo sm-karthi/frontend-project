@@ -4,17 +4,13 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { Header, Comments, Suggestion } from "@/components";
+import { Params } from "@/types";
 
-interface Params {
-    blogId: string;
-}
+export default async function BlogPage({ params }: { params: Params }) {
 
-export default async function BlogPage({
-    params,
-}: {
-    params: Params;
-}) {
-    const filePath = path.join(process.cwd(), `src/assets/article/${params.blogId}.md`);
+    const { blogId } = await params
+
+    const filePath = path.join(process.cwd(), `src/assets/article/${blogId}.md`);
 
     let fileContent = "";
     try {
@@ -67,7 +63,7 @@ export default async function BlogPage({
             </div>
 
             <Comments />
-            <Suggestion currentBlogName={params.blogId} />
+            <Suggestion currentBlogName={blogId} />
         </div>
     );
 }
