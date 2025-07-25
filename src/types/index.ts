@@ -39,11 +39,3 @@ export interface Blog {
     imageUrl: string,
     fileName: string
 }
-
-
-export interface PageProps {
-  params: {
-    blogId: string;
-  };
-}
-

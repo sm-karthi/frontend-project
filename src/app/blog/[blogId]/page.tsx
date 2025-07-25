@@ -1,19 +1,19 @@
-
 import fs from "fs/promises";
 import path from "path";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { Header, Comments, Suggestion } from "@/components";
-import { PageProps } from "@/types";
 
-export default async function BlogPage({ params }: PageProps) {
-    const { blogId } = params;
+
+export default async function Page({ params }: { params: Promise<{ blogId: string }> }) {
+    const { blogId } = await params;
 
 
     const filePath = path.join(process.cwd(), `src/assets/article/${blogId}.md`);
 
     let fileContent = "";
+
     try {
         fileContent = await fs.readFile(filePath, "utf-8");
     } catch (err) {
@@ -22,9 +22,11 @@ export default async function BlogPage({ params }: PageProps) {
 
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden text-[#adadad]">
+
             <Header />
 
             <div className="max-w-4xl mx-auto mt-14 mb-12">
+
                 <Markdown
                     remarkPlugins={[remarkGfm]}
                     components={{
@@ -52,19 +54,29 @@ export default async function BlogPage({ params }: PageProps) {
                 >
                     {fileContent}
                 </Markdown>
+
             </div>
 
+
+
             <div>
+
                 <Link
                     href="/blog"
                     className="hover:underline text-sm md:text-xl duration-150 hover:text-white h-fit w-fit"
                 >
                     {"<-"} Back to blog
                 </Link>
+
             </div>
 
+
             <Comments />
+
             <Suggestion currentBlogName={blogId} />
+
+
         </div>
+
     );
 }
