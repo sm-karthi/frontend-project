@@ -105,7 +105,7 @@ export function Comments() {
                 {/* Google reCAPTCHA */}
                 <div>
                     <ReCAPTCHA
-                        sitekey="6Lf4wYwrAAAAAG_OZEx7hNaviJAmiyiAmWaXWTwi"
+                        sitekey="6LejgI4rAAAAAJT2TIMSls9CiLAH9NPdlZHd2P_y"
                         theme="dark"
                         onChange={(token) => setCaptchaToken(token)}
                         onExpired={() => setCaptchaToken(null)}
