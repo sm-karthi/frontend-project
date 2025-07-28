@@ -31,10 +31,11 @@ export default function About() {
             <Header />
 
 
-            <div className="flex flex-col md:flex-row justify-center md:justify-start w-full space-x-28 mt-18  text-[#adadad] text-sm md:text-xl">
+            <div className="flex flex-col md:flex-row justify-center w-full space-x-28 mt-18 text-[#adadad] text-sm md:text-xl mx-auto">
 
                 <div className="mt-2 w-full md:w-[40%]">
-                    <img src={image.src} alt="image" draggable={false}></img>
+
+                    <img src={image.src} alt="image" className="w-full" draggable={false}></img>
 
                     <div className="flex space-x-4 md:space-x-6 justify-end items-center mt-6 mr-4">
 
