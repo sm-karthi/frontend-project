@@ -10,17 +10,19 @@ export function ParticlesAnimation() {
     const canvas = document.getElementById('canvas1') as HTMLCanvasElement;
     const imageEl = document.getElementById('image1') as HTMLImageElement;
 
-    if (!canvas || !imageEl) {
-      console.error('Canvas or image element not found');
-      return;
-    }
 
     const ctx = canvas.getContext('2d')!;
-    const widthPercent = 200;  
-    const heightPercent = 230; 
 
-    canvas.width = (widthPercent / 100) * window.innerWidth;
-    canvas.height = (heightPercent / 100) * window.innerHeight;
+
+    if (window.innerWidth < 1450) {
+      canvas.width = window.innerWidth + 1500;
+      canvas.height = window.innerHeight + 900;
+    }
+    else {
+      canvas.width = window.innerWidth + 600;
+      canvas.height = window.innerHeight + 300;
+    }
+
 
 
     const gap = 4;
