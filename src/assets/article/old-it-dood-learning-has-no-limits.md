@@ -1,3 +1,7 @@
+---
+ogImage: /images/article1.png
+---
+
 # Learning has no limits
 
 ![WhatsApp Image 2022-06-28 at 4.48.32 PM.jpeg](/images/old-it-dood-learning-has-no-limits.jpeg)

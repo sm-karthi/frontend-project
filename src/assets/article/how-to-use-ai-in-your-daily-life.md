@@ -1,3 +1,7 @@
+---
+ogImage: /images/article10.png
+---
+
 # The FLD Framework: When to Use AI in Your Daily Life
 
 ## The Problem: AI Tool Confusion

@@ -1,3 +1,8 @@
+---
+ogImage: /images/article3.png
+---
+
+
 # My Experience with Stable Diffusion and How it Transformed My Images
 
 Creating a stunning image of yourself using AI can be a game-changer, especially if you're not a fan of posing for photos. This is exactly what I discovered today when I used a stable diffusion AI model to create a new and different look of myself.

@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { Header, CommentForm, Comments, Suggestion } from "@/components";
 import { Metadata } from "next";
+import matter from "gray-matter";
 
 export async function generateMetadata({ params }: { params: Promise<{ blogId: string }> }): Promise<Metadata> {
     const { blogId } = await params;
@@ -18,13 +19,22 @@ export async function generateMetadata({ params }: { params: Promise<{ blogId: s
         console.error("Markdown file not found:", filePath, err);
     }
 
-    const titleMatch = fileContent.match(/^#\s+(.*)/m);
+    const { data, content } = matter(fileContent); 
+
+    const titleMatch = content.match(/^#\s+(.*)/m);
     const title = titleMatch ? titleMatch[1] : blogId.replace(/-/g, " ");
+
+    const ogImage = data.ogImage || "/default-og-image.jpg";
 
     return {
         title,
+        openGraph: {
+            title,
+            images: [{ url: ogImage, alt: title }],
+        },
     };
 }
+
 
 
 
@@ -40,6 +50,8 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
     } catch (err) {
         console.error("Markdown file not found:", filePath, err);
     }
+
+    const { content } = matter(fileContent);
 
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden text-[#adadad]">
@@ -71,7 +83,7 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
                         td: (props) => <td className="px-4 py-2" {...props} />,
                     }}
                 >
-                    {fileContent}
+                    {content}
                 </Markdown>
             </div>
 

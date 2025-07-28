@@ -1,3 +1,7 @@
+---
+ogImage: /images/article11.png
+---
+
 # Art Without Emotion Is Just Noise — And That’s What AI Makes
 
 ## Who is an artist?

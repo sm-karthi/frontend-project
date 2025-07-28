@@ -1,3 +1,8 @@
+---
+ogImage: /images/article5.png
+---
+
+
 # Breaking Barriers: Arun Kumar's Visionary Journey as a Visually Challenged ML Expert
 
 ![IMG_1430.jpg](/images/breaking-barriers-arun-kumars-visionary-journey-visually-challenged-ml-expert.jpg)

@@ -1,3 +1,7 @@
+---
+ogImage: /images/article2.png
+---
+
 # Paiylagam
 ## Nov 2 2023
 I recently had the pleasure of leading a 2-day seminar on HTML and CSS at Paiylagam Institute. It was a fantastic experience, and I was extremely impressed by the attentiveness and enthusiasm of the students in attendance.

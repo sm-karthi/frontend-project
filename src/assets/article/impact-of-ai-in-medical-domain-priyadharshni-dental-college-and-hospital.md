@@ -1,3 +1,7 @@
+---
+ogImage: /images/article7.png
+---
+
 # Impact of AI in Medical Domain - Priyadharshni College of Dental College and Hospital
 
 ![thumb1Artboard 1.jpg](/images/thumb1Artboard.jpg)

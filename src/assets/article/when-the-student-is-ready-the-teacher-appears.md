@@ -1,3 +1,8 @@
+---
+ogImage: /images/article9.png
+---
+
+
 # When the student is ready, the teacher appears.
 
 ![gen_ai_class_group_photo.jpg](/images/gen_ai_class_group_photo.jpg)

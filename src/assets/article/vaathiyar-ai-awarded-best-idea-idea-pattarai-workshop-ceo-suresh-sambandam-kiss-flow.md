@@ -1,3 +1,7 @@
+---
+ogImage: /images/article8.png
+---
+
 # Vaathiyar.ai: Awarded "Best Idea" at Idea Pattarai Workshop by CEO Suresh Sambandam of Kiss Flow
 
 ## Introduction:

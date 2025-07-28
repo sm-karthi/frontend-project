@@ -1,3 +1,7 @@
+---
+ogImage: /images/article4.png
+---
+
 # Google Developers Student Club Organizes Tech Event in VIT Chennai Campus
 
 On April 8th, 2023, the Google Developers Student Club at VIT Chennai Campus organised a one-day full tech event, which brought together enthusiastic students from various colleges in the area. The event featured several talks on different aspects of technology and ended with a final panel discussion, where panel members answered questions from the students.

@@ -1,3 +1,7 @@
+---
+ogImage: /images/article6.png
+---
+
 # AI the Good the Bad and the Funny
 
 ![IMG_1440.jpg](/images/each_one_teach_one_may_event_2023_full_pic.jpg)
