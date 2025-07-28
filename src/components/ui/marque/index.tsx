@@ -26,7 +26,7 @@ export function MarqueAnimation() {
             { x: 10 },
             {
                 x: viewWidth - boxWidth,
-                duration: 22,
+                duration: 30,
                 repeat: -1,
                 yoyo: true,
                 ease: "linear",

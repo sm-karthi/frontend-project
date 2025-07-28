@@ -90,7 +90,17 @@ export function ParticlesAnimation() {
       const pixels = imgData.data;
 
       const centerX = canvas.width / 2 - tempCanvas.width / 2;
-      const percentageFromBottom = 10;
+
+      let percentageFromBottom = 0;
+
+      if (window.innerWidth < 1450) {
+        percentageFromBottom = 10;
+
+      }
+      else {
+        percentageFromBottom = 5;
+      }
+
       const imageBottomY = canvas.height * ((100 - percentageFromBottom) / 100) - tempCanvas.height;
 
       for (let y = 0; y < tempCanvas.height; y += gap) {
