@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import image from '../../../public/images/image1.png';
+import image from '../../../public/images/image4.png';
 import { Particle } from '@/types';
 
 
@@ -16,19 +16,23 @@ export function ParticlesAnimation() {
     }
 
     const ctx = canvas.getContext('2d')!;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth + 1500;
+    canvas.height = window.innerHeight + 1000;
 
     const gap = 4;
     const particleSize = gap * 0.6;
     const particles: Particle[] = [];
 
-    const mouse = { x: 0, y: 0, radius: 3000 };
+    const mouse = { x: 0, y: 0, radius: 10000 };
 
     window.addEventListener('mousemove', (e) => {
-      mouse.x = e.x;
-      mouse.y = e.y;
+      const mousePercentX = (e.clientX / window.innerWidth) * 100;
+      const mousePercentY = (e.clientY / window.innerHeight) * 100;
+
+      mouse.x = (mousePercentX / 100) * canvas.width;
+      mouse.y = (mousePercentY / 100) * canvas.height;
     });
+
 
     function createParticle(originX: number, originY: number): Particle {
       return {
