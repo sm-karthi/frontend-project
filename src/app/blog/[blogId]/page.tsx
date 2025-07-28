@@ -3,7 +3,7 @@ import path from "path";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
-import { Header, Comments, Suggestion } from "@/components";
+import { Header, CommentForm, Comments, Suggestion } from "@/components";
 
 
 export default async function Page({ params }: { params: Promise<{ blogId: string }> }) {
@@ -71,7 +71,10 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
             </div>
 
 
-            <Comments />
+            <CommentForm />
+
+            <Comments/>
+            
 
             <Suggestion currentBlogName={blogId} />
 

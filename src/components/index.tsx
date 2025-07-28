@@ -13,6 +13,8 @@ export * from './ui/copyBioBtn'
 
 export * from './ui/blogTitle'
 
-export * from './ui/comments'
+export * from './ui/comment/form'
 
 export * from './ui/suggestion'
+
+export * from './ui/comment/comments'

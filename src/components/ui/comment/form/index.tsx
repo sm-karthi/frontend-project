@@ -6,7 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha"
 import { postNameAndComments } from "@/utils/api"
 import { FormErrors, FormValues } from "@/types"
 
-export function Comments() {
+export function CommentForm() {
     const [captchaToken, setCaptchaToken] = useState<string | null>(null)
 
     const formik = useFormik<FormValues>({

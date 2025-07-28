@@ -39,3 +39,10 @@ export interface Blog {
     imageUrl: string,
     fileName: string
 }
+
+export interface CommentsType {
+    id: number
+    date: string,
+    name: string,
+    comment: string
+}
