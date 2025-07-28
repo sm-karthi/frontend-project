@@ -35,8 +35,6 @@ export function Comments() {
                 ))
             }
 
-
-
         </div>
     )
 }
