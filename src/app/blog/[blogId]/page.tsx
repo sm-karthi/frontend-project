@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: { params: Promise<{ blogId: s
         console.error("Markdown file not found:", filePath, err);
     }
 
-    const { data, content } = matter(fileContent); 
+    const { data, content } = matter(fileContent);
 
     const titleMatch = content.match(/^#\s+(.*)/m);
     const title = titleMatch ? titleMatch[1] : blogId.replace(/-/g, " ");
 
-    const ogImage = data.ogImage || "/default-og-image.jpg";
+    const ogImage = data.ogImage;
 
     return {
         title,
@@ -55,6 +55,7 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
 
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden text-[#adadad]">
+
             <Header />
 
             <div className="max-w-4xl mx-auto mt-14 mb-12">
@@ -87,6 +88,7 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
                 </Markdown>
             </div>
 
+
             <div>
                 <Link
                     href="/blog"
@@ -96,9 +98,13 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
                 </Link>
             </div>
 
+
             <CommentForm />
+
             <Comments />
+
             <Suggestion currentBlogName={blogId} />
+
         </div>
     );
 }
