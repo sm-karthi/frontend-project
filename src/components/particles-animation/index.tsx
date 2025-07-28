@@ -16,8 +16,12 @@ export function ParticlesAnimation() {
     }
 
     const ctx = canvas.getContext('2d')!;
-    canvas.width = window.innerWidth + 1500;
-    canvas.height = window.innerHeight + 900;
+    const widthPercent = 200;  
+    const heightPercent = 230; 
+
+    canvas.width = (widthPercent / 100) * window.innerWidth;
+    canvas.height = (heightPercent / 100) * window.innerHeight;
+
 
     const gap = 4;
     const particleSize = gap * 0.6;
