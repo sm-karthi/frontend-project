@@ -4,14 +4,36 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { Header, CommentForm, Comments, Suggestion } from "@/components";
+import { Metadata } from "next";
 
+interface PageProps {
+    params: { blogId: string };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { blogId } = params;
+
+    const filePath = path.join(process.cwd(), `src/assets/article/${blogId}.md`);
+    let fileContent = "";
+
+    try {
+        fileContent = await fs.readFile(filePath, "utf-8");
+    } catch (err) {
+        console.error("Markdown file not found:", filePath, err);
+    }
+
+    const titleMatch = fileContent.match(/^#\s+(.*)/m);
+    const title = titleMatch ? titleMatch[1] : blogId.replace(/-/g, " ");
+
+    return {
+        title, 
+    };
+}
 
 export default async function Page({ params }: { params: Promise<{ blogId: string }> }) {
     const { blogId } = await params;
 
-
     const filePath = path.join(process.cwd(), `src/assets/article/${blogId}.md`);
-
     let fileContent = "";
 
     try {
@@ -22,11 +44,9 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
 
     return (
         <div className="h-screen pt-6 pb-1 px-5.5 overflow-x-hidden text-[#adadad]">
-
             <Header />
 
             <div className="max-w-4xl mx-auto mt-14 mb-12">
-
                 <Markdown
                     remarkPlugins={[remarkGfm]}
                     components={{
@@ -54,32 +74,20 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
                 >
                     {fileContent}
                 </Markdown>
-
             </div>
 
-
-
             <div>
-
                 <Link
                     href="/blog"
                     className="hover:underline text-sm md:text-xl duration-150 hover:text-white h-fit w-fit"
                 >
                     {"<-"} Back to blog
                 </Link>
-
             </div>
 
-
             <CommentForm />
-
-            <Comments/>
-            
-
+            <Comments />
             <Suggestion currentBlogName={blogId} />
-
-
         </div>
-
     );
 }

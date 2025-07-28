@@ -1,4 +1,3 @@
-"use client"
 
 import { Header, CopyBioBtn } from "@/components"
 
@@ -11,6 +10,7 @@ import linkedinIcon from '../../../public/images/linkedin-icon.png'
 import githubIcon from '../../../public/images/github-icon.png'
 
 import Link from "next/link"
+import { Metadata } from "next"
 
 const bioText =
     `I am a devoted technology enthusiast and mentor with a profound passion for software development. In my daily interactions, I engage with a diverse array of students, always eager to impart my knowledge and share my experiences. As the founder of Grids and Guides, a forward-thinking company dedicated to empowering individuals to harness technology in innovative and meaningful ways, I am committed to fostering a culture of continuous learning and growth.
@@ -20,6 +20,11 @@ Beyond my role as a mentor and entrepreneur, I take pride in spearheading the Ea
 With a keen focus on collaboration, I am constantly seeking new opportunities to join forces with like-minded individuals, driven by the shared goal of making a meaningful difference. Through my work, I aspire to contribute to the ever-evolving landscape of technology and inspire others to embrace the ethos of Each One Teach One.
 
 Join me on this exciting journey of perpetual learning, growth, and impactful contributions to the world through the realm of technology.`;
+
+
+export const metadata: Metadata = {
+    title:"About"
+}
 
 
 
