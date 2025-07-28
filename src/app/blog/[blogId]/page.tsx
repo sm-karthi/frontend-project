@@ -6,12 +6,8 @@ import Link from "next/link";
 import { Header, CommentForm, Comments, Suggestion } from "@/components";
 import { Metadata } from "next";
 
-interface PageProps {
-    params: { blogId: string };
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { blogId } = params;
+export async function generateMetadata({ params }: { params: Promise<{ blogId: string }> }): Promise<Metadata> {
+    const { blogId } = await params;
 
     const filePath = path.join(process.cwd(), `src/assets/article/${blogId}.md`);
     let fileContent = "";
@@ -26,9 +22,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const title = titleMatch ? titleMatch[1] : blogId.replace(/-/g, " ");
 
     return {
-        title, 
+        title,
     };
 }
+
+
+
 
 export default async function Page({ params }: { params: Promise<{ blogId: string }> }) {
     const { blogId } = await params;
