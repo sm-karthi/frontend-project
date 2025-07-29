@@ -27,9 +27,9 @@ export function Comments() {
 
                     <div key={comment.id} className="border-b border-b-gray-700 py-4">
 
-                        <h2 className="font-semibold text-2xl">{comment.name} <span className="text-sm font-light">{comment.date}</span></h2>
+                        <h2 className="font-semibold text-xl md:text-2xl">{comment.name} <span className="text-xs md:text-sm font-light">{comment.date}</span></h2>
 
-                        <p className="text-lg mt-3">{comment.comment}</p>
+                        <p className="text-sm md:text-lg mt-3">{comment.comment}</p>
 
                     </div>
                 ))
