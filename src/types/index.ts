@@ -29,6 +29,8 @@ export interface Particle {
     size: number;
     ease: number;
     friction: number;
+    baseSize: number;
+    // floatOffset: number;
 };
 
 
