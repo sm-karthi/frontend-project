@@ -8,7 +8,7 @@ import { Metadata } from "next";
 import matter from "gray-matter";
 
 export async function generateMetadata({ params }: { params: Promise<{ blogId: string }> }): Promise<Metadata> {
-   
+
     const { blogId } = await params;
 
     const filePath = path.join(process.cwd(), `src/assets/article/${blogId}.md`);
