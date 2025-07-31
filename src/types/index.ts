@@ -30,7 +30,9 @@ export interface Particle {
     ease: number;
     friction: number;
     baseSize: number;
-    // floatOffset: number;
+    maxSpeed: number;
+    delay: number;
+    sizeVariation: number
 };
 
 
