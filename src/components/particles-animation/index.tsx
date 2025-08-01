@@ -54,8 +54,8 @@ export function ParticlesAnimation() {
       friction: 0.85,
       baseSize: baseParticleSize,
       maxSpeed: 25,
-      delay: Math.random() * 300,
-      sizeVariation: Math.random() * 0.3 + 0.85
+      delay: Math.random() * 100,
+      sizeVariation: Math.random() * 0.5 + 0.90
     };
   }, []);
 
@@ -182,13 +182,14 @@ export function ParticlesAnimation() {
       const mouse = mouseRef.current;
 
       if (!hasAnimatedIn.current) {
-        const animationProgress = Math.min(1, (elapsed - p.delay) / 800);
+        const animationProgress = Math.min(1, (elapsed - p.delay) / 1000);
         if (animationProgress > 0) {
-          p.x = p.originX * animationProgress + (-50) * (1 - animationProgress);
-          p.y = p.originY * animationProgress + p.y * (1 - animationProgress);
+          const easedProgress = 1 - Math.pow(1 - animationProgress, 3);
+          p.x = -50 + (p.originX + 50) * easedProgress;
+          p.y = p.originY * easedProgress + p.y * (1 - easedProgress);
         }
 
-        if (elapsed > 800 + p.delay && !hasAnimatedIn.current) {
+        if (elapsed > 1000 + p.delay && !hasAnimatedIn.current) {
           hasAnimatedIn.current = true;
         }
         return;
