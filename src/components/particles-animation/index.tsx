@@ -50,11 +50,11 @@ export function ParticlesAnimation() {
       color: 'white',
       size: baseParticleSize,
       ease: 0.2,
-      returnEase: 0.03,
+      returnEase: 0.07,
       friction: 0.85,
       baseSize: baseParticleSize,
       maxSpeed: 25,
-      delay: Math.random() * 100,
+      delay: Math.random() * 300,
       sizeVariation: Math.random() * 0.5 + 0.90
     };
   }, []);
