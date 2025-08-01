@@ -32,7 +32,8 @@ export interface Particle {
     baseSize: number;
     maxSpeed: number;
     delay: number;
-    sizeVariation: number
+    sizeVariation: number;
+    returnEase: number
 };
 
 
