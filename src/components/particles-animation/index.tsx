@@ -7,6 +7,7 @@ import { Particle } from '@/types';
 export function ParticlesAnimation() {
   const [zoom, setZoom] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const animationRef = useRef<number | null>(null);
   const particlesRef = useRef<Particle[]>([]);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -18,14 +19,25 @@ export function ParticlesAnimation() {
   const mouseRef = useRef({
     x: 0,
     y: 0,
-    radius: 15000,
-    activeRadius: 25000,
+    radius: 8000,
+    activeRadius: 8000,
     isActive: false,
-    forceMultiplier: 25,
-    hoverForceBoost: 3.5,
-    hoverSizeBoost: 1.5,
+    forceMultiplier: 10,
+    hoverForceBoost: 2.5,
+    hoverSizeBoost: 0.5,
     hoverPulseSpeed: 0.02
   });
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const createParticle = useCallback((originX: number, originY: number, baseParticleSize: number): Particle => {
     return {
@@ -38,6 +50,7 @@ export function ParticlesAnimation() {
       color: 'white',
       size: baseParticleSize,
       ease: 0.2,
+      returnEase: 0.03,
       friction: 0.85,
       baseSize: baseParticleSize,
       maxSpeed: 25,
@@ -88,7 +101,11 @@ export function ParticlesAnimation() {
     const ctx = canvas.getContext('2d')!;
 
     const setCanvasSize = () => {
-      if (window.innerWidth < 1450) {
+      if (window.innerWidth < 600) {
+        canvas.width = window.innerWidth + 600;
+        canvas.height = window.innerHeight + 900;
+      }
+      else if (window.innerWidth < 1450) {
         canvas.width = window.innerWidth + 1500;
         canvas.height = window.innerHeight + 900;
       } else {
@@ -100,6 +117,8 @@ export function ParticlesAnimation() {
     setCanvasSize();
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (isMobile) return;
+
       const rect = canvas.getBoundingClientRect();
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
@@ -112,6 +131,8 @@ export function ParticlesAnimation() {
     };
 
     const handleMouseLeave = () => {
+      if (isMobile) return;
+
       mouseRef.current.isActive = false;
       setIsHovering(false);
       setZoom(1);
@@ -119,11 +140,19 @@ export function ParticlesAnimation() {
     };
 
     const handleMouseEnter = () => {
+      if (isMobile) {
+        setIsHovering(true);
+        setZoom(1.8);
+        return;
+      }
+
       setIsHovering(true);
       setZoom(1.8);
     };
 
     const handleWheel = (e: WheelEvent) => {
+      if (isMobile) return;
+
       e.preventDefault();
       const delta = e.deltaY > 0 ? 0.95 : 1.05;
       setZoom(prev => Math.min(Math.max(prev * delta, 1), 3));
@@ -133,6 +162,21 @@ export function ParticlesAnimation() {
     canvas.addEventListener('mouseenter', handleMouseEnter);
     canvas.addEventListener('mouseleave', handleMouseLeave);
     canvas.addEventListener('wheel', handleWheel, { passive: false });
+
+    const handleTouchStart = () => {
+      if (!isMobile) return;
+      setIsHovering(true);
+      setZoom(1.8);
+    };
+
+    const handleTouchEnd = () => {
+      if (!isMobile) return;
+      setIsHovering(false);
+      setZoom(1);
+    };
+
+    canvas.addEventListener('touchstart', handleTouchStart);
+    canvas.addEventListener('touchend', handleTouchEnd);
 
     const updateParticle = (p: Particle, elapsed: number) => {
       const mouse = mouseRef.current;
@@ -150,7 +194,7 @@ export function ParticlesAnimation() {
         return;
       }
 
-      if (isMouseMoving.current && Date.now() - lastMouseMoveTime.current < 100) {
+      if ((isMouseMoving.current && Date.now() - lastMouseMoveTime.current < 100) || isMobile) {
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const distance = dx * dx + dy * dy;
@@ -178,8 +222,10 @@ export function ParticlesAnimation() {
 
       p.vx *= p.friction;
       p.vy *= p.friction;
-      p.x += p.vx + (p.originX - p.x) * p.ease;
-      p.y += p.vy + (p.originY - p.y) * p.ease;
+
+      const currentEase = isHovering ? p.ease : p.returnEase;
+      p.x += p.vx + (p.originX - p.x) * currentEase;
+      p.y += p.vy + (p.originY - p.y) * currentEase;
 
       const pulseEffect = isHovering ?
         Math.sin(Date.now() * mouse.hoverPulseSpeed) * 0.2 + 1 :
@@ -236,8 +282,10 @@ export function ParticlesAnimation() {
       canvas.removeEventListener('mouseenter', handleMouseEnter);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
       canvas.removeEventListener('wheel', handleWheel);
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [zoom, isHovering, initParticles]);
+  }, [zoom, isHovering, initParticles, isMobile]);
 
   return (
     <>
