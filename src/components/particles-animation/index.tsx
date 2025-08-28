@@ -60,6 +60,7 @@ export function ParticlesAnimation() {
   }, []);
 
   const initParticles = useCallback(() => {
+    
     if (!imageRef.current) return;
 
     const canvas = document.getElementById('canvas1') as HTMLCanvasElement;

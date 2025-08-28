@@ -3,16 +3,25 @@
 import { useState } from "react"
 import { useFormik } from "formik"
 import ReCAPTCHA from "react-google-recaptcha"
-import { postNameAndComments } from "@/utils/api"
+import { postComment } from "@/utils/api"
 import { FormErrors, FormValues } from "@/types"
+import { useParams } from "next/navigation"
 
-export function CommentForm() {
+interface CommentFormProps {
+    onNewComment?: () => void
+}
+
+
+export function CommentForm({ onNewComment  }: CommentFormProps) {
+
+    const { blogId } = useParams();
+
     const [captchaToken, setCaptchaToken] = useState<string | null>(null)
 
     const formik = useFormik<FormValues>({
         initialValues: {
             name: '',
-            comments: '',
+            comment: '',
         },
         validate: (values) => {
             const errors: FormErrors = {}
@@ -23,10 +32,10 @@ export function CommentForm() {
                 errors.name = 'Enter a valid name'
             }
 
-            if (!values.comments) {
-                errors.comments = 'Comments are required'
-            } else if (values.comments.length < 10) {
-                errors.comments = 'Enter valid comments'
+            if (!values.comment) {
+                errors.comment = 'Comments are required'
+            } else if (values.comment.length < 10) {
+                errors.comment = 'Enter valid comment'
             }
 
             if (!captchaToken) {
@@ -36,8 +45,20 @@ export function CommentForm() {
             return errors
         },
         onSubmit: async (values, { resetForm }) => {
+
+            if (!blogId) {
+                alert("Blog ID is missing");
+                return;
+            }
+
             try {
-                await postNameAndComments(values)
+                const res = await postComment({
+                    ...values,
+                    blogId: Array.isArray(blogId) ? blogId[0] : blogId,
+                })
+
+                   if (onNewComment) onNewComment();
+
                 alert("Comment sent successfully")
                 resetForm()
                 setCaptchaToken(null)
@@ -49,7 +70,7 @@ export function CommentForm() {
 
     return (
 
-        <div className="mx-auto max-w-4xl mb-20 mt-12">
+        <div className="mx-auto max-w-4xl mb-15 mt-12">
 
             <h2 className="text-2xl sm:text-3xl font-semibold">Comments</h2>
 
@@ -86,16 +107,16 @@ export function CommentForm() {
                     <label className="font-semibold">Comments</label>
 
                     <textarea
-                        name="comments"
-                        value={formik.values.comments}
+                        name="comment"
+                        value={formik.values.comment}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         className="border-2 border-[#6f6f6f] rounded p-1.5 px-2 focus:outline-none focus:border-white text-sm md:text-lg h-28"
                         placeholder="Enter your comments here..."
                     />
                     {
-                        formik.touched.comments && formik.errors.comments && (
-                            <span className="text-red-500 font-semibold text-sm">{formik.errors.comments}</span>
+                        formik.touched.comment && formik.errors.comment && (
+                            <span className="text-red-500 font-semibold text-sm">{formik.errors.comment}</span>
                         )
                     }
 

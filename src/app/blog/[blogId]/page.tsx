@@ -3,7 +3,7 @@ import path from "path";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
-import { Header, CommentForm, Comments, Suggestion } from "@/components";
+import { Header, Comments, Suggestion } from "@/components";
 import { Metadata } from "next";
 import matter from "gray-matter";
 
@@ -98,9 +98,6 @@ export default async function Page({ params }: { params: Promise<{ blogId: strin
                     {"<-"} Back to blog
                 </Link>
             </div>
-
-
-            <CommentForm />
 
             <Comments />
 
