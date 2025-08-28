@@ -1,16 +1,21 @@
 
 export interface FormValues {
     name: string,
-    comments: string,
+    comment: string,
     captcha?: string
 }
 
 
 export interface FormErrors {
     name?: string,
-    comments?: string,
+    comment?: string,
     captcha?: string
 }
+
+export interface CommentData extends FormValues {
+  blogId: string;
+}
+
 
 
 export interface CopyBioBtnProps {
@@ -46,7 +51,7 @@ export interface Blog {
 }
 
 export interface CommentsType {
-    id: number
+    _id: number
     date: string,
     name: string,
     comment: string
