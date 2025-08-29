@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const uri = process.env.MONGODB_URI as string;
+console.log("Uri", uri)
 const dbName = "blogs";
 
 class Database {
@@ -23,12 +24,12 @@ class Database {
     }
 
 
-    // public async close(): Promise<void> {
-    //     if (mongoose.connection.readyState) {
-    //         await mongoose.disconnect();
-    //         console.log(`MongoDB connection closed (${dbName})`);
-    //     }
-    // }
+    public async close(): Promise<void> {
+        if (mongoose.connection.readyState) {
+            await mongoose.disconnect();
+            console.log(`MongoDB connection closed (${dbName})`);
+        }
+    }
 }
 
 export const db = Database.getInstance();
