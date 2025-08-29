@@ -1,7 +1,7 @@
 import { CommentData } from "@/types";
 import axios from "axios";
 
-const baseURL = typeof window !== "undefined" ? window.location.origin : "";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export function postComment(data: CommentData) {
     return axios.post(`${baseURL}/api`, data);
