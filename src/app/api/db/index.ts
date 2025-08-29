@@ -23,12 +23,12 @@ class Database {
     }
 
 
-    public async close(): Promise<void> {
-        if (mongoose.connection.readyState) {
-            await mongoose.disconnect();
-            console.log(`MongoDB connection closed (${dbName})`);
-        }
-    }
+    // public async close(): Promise<void> {
+    //     if (mongoose.connection.readyState) {
+    //         await mongoose.disconnect();
+    //         console.log(`MongoDB connection closed (${dbName})`);
+    //     }
+    // }
 }
 
 export const db = Database.getInstance();
