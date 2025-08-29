@@ -1,12 +1,14 @@
 import { CommentData } from "@/types";
 import axios from "axios";
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = process.env.BASE_URL;
+console.log("Base URL", baseUrl);
+
 
 export function postComment(data: CommentData) {
-    return axios.post(`${baseURL}/api`, data);
+    return axios.post(`${baseUrl}/api`, data);
 }
 
 export function getComments(blogId: string) {
-    return axios.get(`${baseURL}/api?blogId=${blogId}`);
+    return axios.get(`${baseUrl}/api?blogId=${blogId}`);
 }

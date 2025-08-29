@@ -19,6 +19,8 @@ export async function POST(request: Request) {
     console.error(error);
     return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
 
+  } finally {
+    await db.close()
   }
 }
 
@@ -41,6 +43,8 @@ export async function GET(request: Request) {
     console.log(error);
     return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
 
+  } finally {
+    await db.close()
   }
 }
 
