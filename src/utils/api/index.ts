@@ -1,14 +1,14 @@
 import { CommentData } from "@/types";
 import axios from "axios";
 
-// const baseUrl = process.env.BASE_URL;
-// console.log("Base URL", baseUrl);
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+console.log("Base URL", baseURL);
 
 
 export function postComment(data: CommentData) {
-    return axios.post(`https://rv-swart.vercel.app/api`, data);
+    return axios.post(`${baseURL}/api`, data);
 }
 
 export function getComments(blogId: string) {
-    return axios.get(`https://rv-swart.vercel.app/api?blogId=${blogId}`);
+    return axios.get(`${baseURL}/api?blogId=${blogId}`);
 }
